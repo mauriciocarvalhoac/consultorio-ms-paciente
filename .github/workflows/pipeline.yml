@@ -37,6 +37,7 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           source: "target/consultorio-ms-paciente.jar"
           target: "/app"
+          debug: true
           strip_components: 1
 
 #  deploy-app:

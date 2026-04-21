@@ -7,7 +7,7 @@ on:
       - deploy
 
 jobs:
-  config-env:
+  build-app:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do projeto
@@ -19,23 +19,25 @@ jobs:
           java-version: 21
           distribution: 'temurin'
 
-  build-app:
-    needs: config-env
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout do projeto
-      - uses: actions/checkout@v4
+      - name: Build with Maven
+        run: mvn clean package -DskipTests
 
-      - name: Build do JAR do projeto
-        run: |
-          echo "Buildando o JAR..."
-          mvn clean install
-          echo "Build concluído com sucesso!"
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-jar
+          path: target/*.jar
+
 
   deploy-app:
     needs: build-app
     runs-on: ubuntu-latest
     steps:
+      - name: Download JAR
+        uses: actions/download-artifact@v4
+        with:
+          name: app-jar
+
       - name: Faz o Deploy para VPS
         uses: appleboy/scp-action@v0.1.7
         with:

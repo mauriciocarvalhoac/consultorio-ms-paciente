@@ -23,10 +23,13 @@ jobs:
     needs: config-env
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout do projeto
+      - uses: actions/checkout@v4
+
       - name: Build do JAR do projeto
         run: |
           echo "Buildando o JAR..."
-          mvn clean package
+          mvn clean install
           echo "Build concluído com sucesso!"
 
   deploy-app:

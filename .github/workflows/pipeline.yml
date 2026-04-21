@@ -22,21 +22,11 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -DskipTests
 
-      - name: Upload JAR
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-jar
-          path: target/*.jar
-
-
-  deploy-app:
-    needs: build-app
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download JAR
-        uses: actions/download-artifact@v4
-        with:
-          name: app-jar
+      #      - name: Upload JAR
+      #        uses: actions/upload-artifact@v4
+      #        with:
+      #          name: app-jar
+      #          path: target/*.jar
 
       - name: Faz o Deploy para VPS
         uses: appleboy/scp-action@v0.1.7
@@ -48,3 +38,23 @@ jobs:
           source: "target/consultorio-ms-paciente.jar"
           target: "/app"
           strip_components: 1
+
+#  deploy-app:
+#    needs: build-app
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Download JAR
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: app-jar
+#
+#      - name: Faz o Deploy para VPS
+#        uses: appleboy/scp-action@v0.1.7
+#        with:
+#          host: ${{ secrets.VPS_HOST }}
+#          username: ${{ secrets.VPS_USER }}
+#          key: ${{ secrets.VPS_SSH }}
+#          port: ${{ secrets.VPS_PORT }}
+#          source: "target/consultorio-ms-paciente.jar"
+#          target: "/app"
+#          strip_components: 1

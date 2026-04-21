@@ -35,7 +35,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH }}
           port: ${{ secrets.VPS_PORT }}
-          source: "./target/consultorio-ms-paciente.jar"
+          source: "target/*.jar"
           target: "/app"
           debug: true
           strip_components: 1

@@ -18,6 +18,7 @@ jobs:
         with:
           java-version: 21
           distribution: 'temurin'
+          cache: maven
 
       - name: Build with Maven
         run: mvn clean package -DskipTests
@@ -38,7 +39,6 @@ jobs:
           source: "target/*.jar"
           target: "/app"
           debug: true
-          strip_components: 1
 
 #  deploy-app:
 #    needs: build-app

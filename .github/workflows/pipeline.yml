@@ -23,11 +23,6 @@ jobs:
     needs: config-env
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Checkout do projeto
-        run: |
-          echo "Projeto baixado do GitHub"
-
       - name: Build do JAR do projeto
         run: |
           echo "Buildando o JAR..."

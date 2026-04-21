@@ -29,16 +29,16 @@ jobs:
       #          name: app-jar
       #          path: target/*.jar
 
-      - name: Faz o Deploy para VPS via SCP
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH }}
-          port: ${{ secrets.VPS_PORT }}
-          source: "."
-          target: "./app"
-          debug: true
+#      - name: Faz o Deploy para VPS via SCP
+#        uses: appleboy/scp-action@v0.1.7
+#        with:
+#          host: ${{ secrets.VPS_HOST }}
+#          username: ${{ secrets.VPS_USER }}
+#          key: ${{ secrets.VPS_SSH }}
+#          port: ${{ secrets.VPS_PORT }}
+#          source: "."
+#          target: "./app"
+#          debug: true
 
 #  deploy-app:
 #    needs: build-app
